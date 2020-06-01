@@ -19,7 +19,7 @@ func main() {
 	dir := "/tmp/sample-controller-workshop"
 	name := "Liviu Costea"
 	email := "_your_email_address_@gmail.com"
-	tag := "v0.1.0"
+	tag := "v0.1.4"
 
 	r, err := cloneRepo(url, dir)
 
@@ -66,6 +66,7 @@ func cloneRepo(url, dir string) (*git.Repository, error) {
 	if err != nil {
 		if err == git.ErrRepositoryAlreadyExists {
 			log.Info("repo was already cloned")
+			return git.PlainOpen(dir)
 		} else {
 			log.Errorf("clone git repo error: %s", err)
 			return nil, err
